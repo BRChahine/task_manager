@@ -1,5 +1,4 @@
 <?php 
-session_start();
 define("BASE_URL","http://localhost/task_manager/");?>
 <!DOCTYPE html>
 <html lang="en">

@@ -19,4 +19,32 @@ class UserModel{
             echo "500 internal error!".$e->getMessage();
         }
     }
+    // definir une methode pour se connecter a l'appli
+    public static function connexion ($email, $password){
+        // etablir la connexion avec la base de donnees
+        $dbConnect = DbConnexion::dbLog();
+        //preparer la requete
+        $request = $dbConnect->prepare("SELECT * FROM users WHERE email = :mail");
+        $request->bindParam(':mail',$email);
+        // executer la requete
+        $request->execute();
+        // recuperer le resultat dans un tableau
+        $user = $request->fetch();
+        // si le tableau user est vide(l'email n'existe pas dans la bd)
+        if(empty($user)){
+            $_SESSION['error_message'] = "Login ou mot de passe incorrect!";
+            header("Location: http://localhost/task_manager/?url=login");
+        }else{
+            if(password_verify($password, $user['password'])){
+                // tout ce passe bien donc on cree les sessions
+                unset($user['password']);
+                $_SESSION['user_info'] = $user;
+                header("Location: http://localhost/task_manager/?url=dashboard");
+
+            }else{
+                $_SESSION['error_message'] = "Login ou mot de passe incorrect!";
+                header("Location: http://localhost/task_manager/?url=login");
+            }
+        }
+    }
 }

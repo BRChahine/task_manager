@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "controllers/userController.php";
 $url = null;
 /* if(isset($_GET['url'])){
@@ -21,6 +22,14 @@ switch($url){
             require_once "views/register.php";
         }
         break;
+        case "login":
+            if($_SERVER["REQUEST_METHOD"] == "POST"){
+                $email = $_POST['email'];
+                $password = $_POST['mdp'];
+                UserController::login($email, $password);
+            }else{
+                require_once "views/login.php";
+            }
     default:
         echo "404 cette page n'existe pas!";
 

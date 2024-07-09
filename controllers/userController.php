@@ -54,6 +54,11 @@ class UserController{
         }
 
     }
+
+    // methode pour connecter le user
+    public static function login($email, $password){
+        UserModel::connexion($email, $password);
+    }
 }
 
 
