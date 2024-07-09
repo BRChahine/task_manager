@@ -8,6 +8,6 @@ class UserModel{
 
         // executer la requete
 
-        // retourner un boolean
+        // retourner un booleanPOO
     }
 }
