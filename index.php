@@ -15,9 +15,8 @@ switch($url){
             $firstName = $_POST['prenom'];
             $email = $_POST['email'];
             $password = $_POST['mdp'];
-            var_dump($_POST);
-        /*     $user = new UserController($lastName,$firstName,$email,$password);
-            $user->register(); */
+            $user = new UserController($lastName,$firstName,$email,$password);
+            $user->register(); 
         }else{
             require_once "views/register.php";
         }

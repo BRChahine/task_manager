@@ -1,27 +1,28 @@
 <?php
+require_once "models/userModel.php";
 // definition de la classe userController
-class UserConroller{
+class UserController{
     // attributs
     // private $id;
     private $lastName;
-    private $firtName;
+    private $firstName;
     private $email;
     private $password;
     // private $statut;
 
     // definition du constructeur
-    public function __contruct($la, $fi, $em, $pa){
+    public function __construct($la, $fi, $em, $pa){
         $this->lastName = $la;
         $this->firstName = $fi;
         $this->email = $em;
-        $this->password = $pa; 
+        $this->password = password_hash($pa,PASSWORD_DEFAULT); 
     }
 
     // definitions des getters et setters
     public function getLastName(){
         return $this->lastName;
     }
-    public function setLastname($la){
+    public function setLastName($la){
         $this->lastName = $la;
     }
     public function getFirstName(){
@@ -49,6 +50,7 @@ class UserConroller{
             echo "Veuillez remplir tout le formulaire!<br>";
         }else{
             // appel du model UserModel
+            UserModel::inscription($this->lastName, $this->firstName, $this->email, $this->password);
         }
 
     }

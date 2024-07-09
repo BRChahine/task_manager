@@ -1,6 +1,6 @@
 <?php 
 session_start();
-define("BASE_URL","http://localhost/marmitard/");?>
+define("BASE_URL","http://localhost/task_manager/");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,8 @@ define("BASE_URL","http://localhost/marmitard/");?>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="d-flex" role="search">
-          <a href ="<?= BASE_URL ?>controller/login_controller.php?action=logout" class="btn">Logout</a>   
+          <a href ="<?= BASE_URL ?>?url=register" class="btn">Sign up</a>   
+          <a href ="<?= BASE_URL ?>?url=login" class="btn">Sign in</a>   
       </form>
     </div>
   </div>
